@@ -5,5 +5,6 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[http-kit "2.3.0"]
                  [org.clojure/clojure "1.9.0-alpha17"]
+                 [org.clojure/data.json "0.2.6"]
                  [org.clojure/test.check "0.9.0"]
                  [org.clojure/math.numeric-tower "0.0.4"]])

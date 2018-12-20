@@ -49,7 +49,8 @@
 (s/def ::user uuid?)
 (s/def ::user-id pos-int?)
 (s/def ::tenant-id pos-int?)
-(s/def ::transaction (s/keys :req-un [::person ::currency ::amount ::reference ::user-id ::tenant-id]))
+(s/def ::transaction-type #{:payment :standing-order :direct-debit})
+(s/def ::transaction (s/keys :req-un [::person ::currency ::amount ::reference ::user-id ::tenant-id ::transaction-type]))
 
 
 #_(defn transaction-generator
@@ -96,6 +97,6 @@
 (defn transactions
   []
   (let [user->tenant (head-tail-distribution 20 2 4/5)
-        transaction->user (head-tail-distribution 100000 1000 1/2)]
+        transaction->user (head-tail-distribution 1000 10 1/2)]
     (map #(create-transaction % {:user->tenant user->tenant
                                  :transaction->user transaction->user}) (range))))
